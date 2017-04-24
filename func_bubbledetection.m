@@ -1,5 +1,16 @@
 function [nframes, bubblepropertiestotal] = func_bubbledetection(bubblefile, xsmooth, ysmooth, zsmooth, epgcutoff, epgbubble, mincordlength, minCSlength, minbubbledia, nframes, ycutoff1, ycutoff2, cylgeometry, cylcoord)
-  
+ 
+% ------------------------------------------------------------------------
+% this function detects bubbles using the following schematic 
+% 1. Reconstruct simulation geometry (func_readgeometry) using geometric parameters provided in geometry.xlsx
+% 2. Overlay simulation data [frame#, cell#, voidage] onto recreated geometry to yield [frame#, x, y, z, voidage] 
+% 3. Link neighboring cells satisfying bubble threshold criteria 
+% 4. Assign bubble numbers to linked cells 
+% 5. Resolve disputes in bubble numbering arising from counting convention
+% 6. Aggregate cells forming each bubble to compute bubble properties (func_bubbleproperties)
+% 7. aggregate all bubbles and their properties into matrix bubblepropertiestotal
+% ------------------------------------------------------------------------
+
 bubblepropertiestotal = [0 0 0 0 0 0 0 0 0 0 0 0 0];
 
 fileID = fopen(bubblefile);
