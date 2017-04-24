@@ -33,7 +33,7 @@ zsmooth = 2;            % z-grid refinement. use zsmooth >= 2  if cylcoord = 1
     
 % 5. criteria for postprocessing of detected bubbles
 ylim1 = 0.1;            % min y for postprocessing 
-ylim2 = 0.6;            % min y for postprocessing 
+ylim2 = 0.6;            % max y for postprocessing 
 rlim1 = 0;              % min r/x for postprocessing (if cylgeometry = 1, r=0 is centerline)
 rlim2 = R;              % max r/x for postprocessing 
 zlim1 = 0;              % min z for postprocessing (if cylgeometry = 1, leave unspecified)
