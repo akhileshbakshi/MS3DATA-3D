@@ -54,6 +54,7 @@ if cylgeometry == 0 && cylcoord == 1; error('cylcoord = 1 only possible if cylge
 bubblepropertiestotal_1 = func_bubblevelocity(bubblepropertiestotal, tstep, R, Z, minbubbledia_vel, ylim1, ylim2, cylgeometry); 
 % bubblepropertiestotal_1 = [frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2, vx, vy, vz]
 % if cylgeometry=1, vx = radial velocity, vz = theta velocity 
+% increasing minbubledia_vel and choosing [ylim1, ylim2] to exclude small bubbles may improve linking 
 
 % ----------------------------------------------------------------
 % sample for computing average statistics 
