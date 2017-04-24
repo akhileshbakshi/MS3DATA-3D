@@ -10,8 +10,8 @@ function [B]=func_bubblevelocity(B, tstep, R, Z, minbubbledia_vel, ylim1, ylim2,
 % increasing minbubledia_vel and choosing [ylim1, ylim2] to exclude small bubbles may improve linking 
 
 % max bubble velocity constraints are based on observations in visualization
-% the defult setting for vxmax, vymax is that a bubble can travel atmost Width/10 in one time-step
-% vymax based on bubble axial velocity 
+% the defult setting for vxmax, vxmax is that a bubble can travel atmost Width/10 in one time-step
+% vymax based on bubble diameter
 % -----------------------------------------------------------------------
 
 Btemp = B;
