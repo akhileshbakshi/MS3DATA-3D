@@ -46,7 +46,9 @@ diaratio = 1.1;         % maximum permissible ratio of bubble dia for linking
 dmax = 0.05;            % maximum permissible distance traveled by bubble in one time-step  
 tolerance  = 0.0;       % minimum permissible bubble y-velocity = -tolerance x time-step 
 lagrangetracking = 1;   % (recommended) set 1 to turn on lagrangian tracking of bubbles 
-                        % for globaltracking (lagrangetracking=0), consider increasing minbubledia_vel
+                        % linking is affected by bubble activity- splitting, coalescence and eruption
+                        % for best linking results write data at high frequency 
+                        % if globaltracking (lagrangetracking=0), consider increasing minbubledia_vel
                         % and choosing [ylim1, ylim2] to exclude small bubbles may improve linking 
 
 % 6. Statistics for average computations 
@@ -60,7 +62,7 @@ if cylgeometry == 0 && cylcoord == 1; error('cylcoord = 1 only possible if cylge
 % bubblepropertiestotal = [frame#, xmean, ymean, zmean, bubbledia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
 % if cylgeometry=1, xmean and zmean are in range [-radius,radius] 
 
-bubblepropertiestotal = func_bubblevelocity(bubblepropertiestotal, tstep, R, Z, minbubbledia_vel, ylim1, ylim2, cylgeometry, lagrangetracking, diaratio, dmax, tolerance); 
+bubblepropertiestotal = func_bubblevelocity(bubblepropertiestotal, tstep, minbubbledia_vel, ylim1, ylim2, cylgeometry, lagrangetracking, diaratio, dmax, tolerance); 
 % bubblepropertiestotal_1 = [frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2, vx, vy, vz]
 % if cylgeometry=1, vx = radial velocity, vz = theta velocity 
 
