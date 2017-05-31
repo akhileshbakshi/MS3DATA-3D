@@ -62,8 +62,8 @@ if cylgeometry == 0 && cylcoord == 1; error('cylcoord = 1 only possible if cylge
 % bubblepropertiestotal = [frame#, xmean, ymean, zmean, bubbledia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
 % if cylgeometry=1, xmean and zmean are in range [-radius,radius] 
 
-bubblepropertiestotal = func_bubblevelocity(bubblepropertiestotal, tstep, minbubbledia_vel, ylim1, ylim2, cylgeometry, lagrangetracking, diaratio, dmax, tolerance); 
-% bubblepropertiestotal_1 = [frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2, vx, vy, vz]
+[bubbletrace, bubblepropertiestotal] = func_bubblevelocity(bubblepropertiestotal, tstep, minbubbledia_vel, ylim1, ylim2, cylgeometry, lagrangetracking, diaratio, dmax, tolerance); 
+% bubblepropertiestotal = [frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2, vx, vy, vz]
 % if cylgeometry=1, vx = radial velocity, vz = theta velocity 
 
 % ----------------------------------------------------------------
@@ -80,6 +80,27 @@ bubblepropertiestotal = func_bubblevelocity(bubblepropertiestotal, tstep, minbub
 % dlmwrite(filename,bubblestats_ax,'delimiter',' ','precision',4); 
 
 
+% ----------------------------------------------------------------
+% sample for plotting bubbletrace- only possible if lagrangetracking = 1
+
+tracebubblenum = [1 11 14 27];
+for j=1:length(tracebubblenum)
+    switch j 
+        case 1; color = 'r';
+        case 2; color = 'k';        
+        case 3; color = 'b';
+        case 4; color = 'm';
+    end 
+    traceindex = find(bubbletrace(:,tracebubblenum(j)));  
+    tracebubbles = bubbletrace(traceindex,tracebubblenum(j)); 
+    xscatter = bubblepropertiestotal(tracebubbles,2); yscatter = bubblepropertiestotal(tracebubbles,3); zscatter = bubblepropertiestotal(tracebubbles,4); size = bubblepropertiestotal(tracebubbles,5).^3; 
+    scatter3(xscatter,zscatter,yscatter,2000000*size,color,'LineWidth',1.2);
+    xlabel ('x [m]','FontWeight','bold','fontsize',20);
+    zlabel ('y [m]','FontWeight','bold','fontsize',20);
+    ylabel ('z [m]','FontWeight','bold','fontsize',20);
+    xlim([-0.08 0.08]); zlim([0,0.6]); ylim([-0.08 0.08]);
+    hold on;
+end  
 
     
 
