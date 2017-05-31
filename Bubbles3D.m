@@ -68,7 +68,7 @@ bubblepropertiestotal = func_bubblevelocity(bubblepropertiestotal, tstep, minbub
 
 % ----------------------------------------------------------------
 % sample for computing average statistics 
-[bubblestats_2D, bubblestats_ax, bubblestats_rad]=func_bubblestatistics(bubblepropertiestotal_1, nbinsax, nbinsrad, ylim1, ylim2, rlim1, rlim2, zlim1, zlim2, cylgeometry);
+[bubblestats_2D, bubblestats_ax, bubblestats_rad]=func_bubblestatistics(bubblepropertiestotal, nbinsax, nbinsrad, ylim1, ylim2, rlim1, rlim2, zlim1, zlim2, cylgeometry);
 % bubblestats_2D = [binr, biny, nb, vol-dia, CSmax, cord, AR1, AR2, nbubbles_linked, abs(vx), vy, abs(vz)]; 
 % bubblestats_ax = [biny, nb_y, vol-dia, CSmax, cord, AR1, AR2, nbubbles_linked, abs(vx), vy, abs(vz)]; 
 % bubblestats_rad= [binr, nb_r, vol-dia, CSmax, cord, AR1, AR2, nbubbles_linked, abs(vx), vy, abs(vz)]; 
