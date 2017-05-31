@@ -1,4 +1,4 @@
-function [B]=func_bubblevelocity(B, tstep, minbubbledia_vel, ylim1, ylim2, cylgeometry, lagrangetracking, diaratio, dmax, tolerance)
+function [bubbletrace, B]=func_bubblevelocity(B, tstep, minbubbledia_vel, ylim1, ylim2, cylgeometry, lagrangetracking, diaratio, dmax, tolerance)
 
 % ----------------------------------------------------------------------
 % this function adds velocity components as columns to matrix B
@@ -21,7 +21,7 @@ m = length(B(:,1)); B = [(1:m)',B];
 TF = B(:,9)>ylim1 & B(:,10)<ylim2 & B(:,6)>minbubbledia_vel; B = B(TF,:);
 
 % B = [orig-bubble#, frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
-if ~lagrangetracking; B = func_globaltracking(B, tstep, cylgeometry, diaratio, dmax, tolerance);  
+if ~lagrangetracking; B = func_globaltracking(B, tstep, cylgeometry, diaratio, dmax, tolerance); bubbletrace = 0;  
 else; [bubbletrace, B] = func_lagrangetracking(B, tstep, cylgeometry, diaratio, dmax, tolerance); 
 end
 % B = [orig-bubble#, frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2, vx, vy, vz]
