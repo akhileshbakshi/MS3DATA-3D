@@ -314,20 +314,22 @@ B = sortrows(B,7); B(:,4:6)=[];
 % ----------------------------------------------------------------
 % compute bubble properties 
 % B = [x y z bubble# interface]
-bubbleproperties = func_bubbleproperties(B(:,1:4), deltax, deltay, deltaz); 
-% bubbleproperties = [bubble#, xmean, ymean, zmean, volume, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
-bubbleproperties(:,5) = (6*bubbleproperties(:,5)/pi).^(1/3); 
-% filters to eliminate small bubbles 
-TF1 = bubbleproperties(:,9)-bubbleproperties(:,8)<mincordlength; 
-TF2 = bubbleproperties(:,7)-bubbleproperties(:,6)<minCSlength;
-TF3 = bubbleproperties(:,11)-bubbleproperties(:,10)<minCSlength;
-TF4 = bubbleproperties(:,5)<minbubbledia;
-bubbleproperties(TF1 | TF2 | TF3 | TF4,:) = []; 
+if ~isempty(B) 
+     bubbleproperties = func_bubbleproperties(B(:,1:4), deltax, deltay, deltaz); 
+     % bubbleproperties = [bubble#, xmean, ymean, zmean, volume, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
+     bubbleproperties(:,5) = (6*bubbleproperties(:,5)/pi).^(1/3); 
+     % filters to eliminate small bubbles 
+     TF1 = bubbleproperties(:,9)-bubbleproperties(:,8)<mincordlength; 
+     TF2 = bubbleproperties(:,7)-bubbleproperties(:,6)<minCSlength;
+     TF3 = bubbleproperties(:,11)-bubbleproperties(:,10)<minCSlength;
+     TF4 = bubbleproperties(:,5)<minbubbledia;
+     bubbleproperties(TF1 | TF2 | TF3 | TF4,:) = []; 
 
-% the first column now gets frame number 
-bubbleproperties(:,1) = framei;
-bubblepropertiestotal = [bubblepropertiestotal; bubbleproperties];
-% bubblepropertiestotal = [frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
+     % the first column now gets frame number 
+     bubbleproperties(:,1) = framei;
+     bubblepropertiestotal = [bubblepropertiestotal; bubbleproperties];
+     % bubblepropertiestotal = [frame#, xmean, ymean, zmean, bubble-dia, xmin, xmax, ymin, ymax, zmin, zmax, AR1, AR2]
+end 
 end
 
 bubblepropertiestotal(1,:) = [];            % remove first row of zeros 
